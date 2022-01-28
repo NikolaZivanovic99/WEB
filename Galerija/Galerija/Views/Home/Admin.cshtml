@@ -1,0 +1,229 @@
+﻿@using Galerija.Models;
+@model IEnumerable<Entity>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<head>
+    <style>
+        body{
+            background-color:hsl(66, 35%, 86%);
+        }
+        th{
+            background-color:hsl(154, 100%, 26%);
+        }
+        td{
+            background-color:hsl(124, 23%, 88%);
+        }
+        select, input{
+            background-color:hsl(194, 24%, 93%);
+        }
+        form.levi{
+            padding-bottom:10px;
+        }
+        table, th, td {
+            border: 2px solid;
+            border-collapse: collapse;
+            padding: 4px;
+            margin:auto;
+        }
+
+        input.cena {
+            width: 60px;
+        }
+
+        form td {
+            border-top: hidden;
+            border-bottom: hidden;
+        }
+
+        div {
+            float: left;
+            text-align:center;
+        }
+
+        td.login {
+            border: hidden;
+        }
+        h2{
+            text-align:center;
+        }
+    </style>
+    <title>Administracija</title>
+</head>
+
+    
+
+    <div style="margin-top:68px;">
+        <form action="~/Home/Sortiraj" method="post" class="levi">
+            <table style="width:200px; text-align:center;">
+                <tr><th>Sortiraj</th></tr>
+                <tr>
+                    <td>
+                        <select name="nacin">
+                            <option value="naziv">Po nazivu</option>
+                            <option value="tehnika">Po tehnici</option>
+                            <option value="cena">Po ceni</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="smer">
+                            <option value="rastuce">Rastuce</option>
+                            <option value="opadajuce">Opadajuce</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Primeni filter" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom:2px solid;">
+                        <input type="submit" formaction="~/Home/Ocisti" value="Ocisti Filter" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <form action="~/Home/Pretraga" method="post" class="levi">
+            <table style="width:200px; text-align:center;">
+                <tr><th>Pretrazi</th></tr>
+                <tr>
+                    <td>
+                        <label>Cena: </label><input type="text" name="od" class="cena" /><label> - </label><input type="text" name="do" class="cena" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Naziv: </label><input type="text" name="naziv" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Tehnika: </label><input type="text" name="tehnika" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Primeni pretragu" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom:2px solid;">
+                        <input type="submit" formaction="~/Home/Ocisti" value="Ocisti Pretragu" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div style="width:auto; margin-left:20px; margin-right:50px; ">
+        <h2>Slike</h2>
+        <div style="float:none;">
+            <table>
+                <tr>
+                    <th>Naziv slike</th>
+                    <th>Autor</th>
+                    <th>Godina izrade</th>
+                    <th>Tehnika izrade</th>
+                    <th>Opis</th>
+                    <th>Cena</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                @foreach (Entity slika in Model)
+                {
+                    if (!slika.Obrisan)
+                    {
+                        <tr>
+                            <td>@slika.Value.Naziv</td>
+                            <td>@slika.Value.Autor</td>
+                            <td>@slika.Value.GodinaIzrade</td>
+                            <td>@slika.Value.Tehnika</td>
+                            <td>@slika.Value.Opis</td>
+                            <td>@slika.Value.Cena</td>
+                            <td><form method="post" action="~/Upravljanje/ObrisiSliku"><input type="hidden" name="id" value="@slika.Value.Id" /><input type="submit" value="Obrisi" /></form></td>
+                            <td><form method="post" action="~/Upravljanje/IzmeniSliku"><input type="hidden" name="id" value="@slika.Value.Id" /><input type="submit" value="Izmei" /></form></td>
+                        </tr>
+                    }
+                }
+                <tr>
+                    <td colspan="8" style="text-align:center;"><form action="~/Upravljanje/DodajSliku" method="get"><input type="submit" value="Dodaj sliku" /></form></td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="margin-top: 20px; float:none;">
+            <h2>Galerije</h2>
+            <table>
+                <tr>
+                    <th>Naziv</th>
+                    <th>Adresa</th>
+                    <th></th>
+                </tr>
+                @foreach (var gal in (List<Galerija>)HttpContext.Current.Application["galerije"])
+                {
+                    if (!gal.Obrisan)
+                    {
+                        <tr>
+                            <td>@gal.Naziv</td>
+                            <td>@gal.Adresa</td>
+                            <td><form method="post" action="~/Upravljanje/ObrisiGaleriju"><input type="hidden" name="ime" value="@gal.Naziv" /><input type="submit" value="Obrisi" /></form></td>
+                        </tr>
+                    }
+                }
+                <tr><td colspan="3" align="center"><form action="~/Upravljanje/DodajGaleriju"><input type="submit" value="Dodaj Galeriju" /></form></td></tr>
+            </table>
+        </div>
+        <div style="margin-top: 20px; float:none;">
+            <h2>Korisnici</h2>
+            <table>
+                <tr>
+                    <th>Korisnicko ime</th>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Pol</th>
+                    <th>Email</th>
+                    <th>Datum Rodjenja</th>
+                    <th>Uloga</th>
+                    <th></th>
+                </tr>
+                @foreach (var kor in (List<Korisnik>)HttpContext.Current.Application["korisnici"])
+                {
+                    if (!kor.Obrisan)
+                    {
+                        <tr>
+                            <td>@kor.Username</td>
+                            <td>@kor.Ime</td>
+                            <td>@kor.Prezime</td>
+                            <td>@kor.Pol</td>
+                            <td>@kor.Email</td>
+                            <td>@kor.DatumRodjenja.Date</td>
+                            <td>@kor.Uloga</td>
+                            <td><form method="post" action="~/Upravljanje/ObrisiKorisnika"><input type="hidden" name="username" value="@kor.Username" /><input type="submit" value="Obrisi" /></form></td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+    <div style="width:400px; margin:auto; margin-top:68px;background-color:hsl(154, 100%, 26%)">
+        <form action="~/Autorizacija/LogOut" method="post">
+            <table style="border:none; ">
+                <tr>
+                    <td style="border:none;background-color:inherit;"><label>Pozdrav @(((Korisnik)(Session["user"])).Ime)</label></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="login" style="background-color:inherit;">
+                        <input type="submit" value="Izloguj se" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+

@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body {
+            background-color: hsl(66, 35%, 86%);
+        }
+
+        th {
+            background-color: hsl(154, 100%, 26%);
+        }
+
+        td {
+            background-color: hsl(124, 23%, 88%);
+        }
+
+        select, input {
+            background-color: hsl(194, 24%, 93%);
+        }
+        table{
+            padding:0px;
+            border-collapse:collapse;
+        }
+        label.error{
+            font-size:11px;
+            color:red;
+            padding-bottom:3px;
+            
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Log In</title>
+</head>
+<body>
+    <div style="margin:auto; width:270px; margin-top:68px;padding:0px;">
+        <form action="~/Autorizacija/LogIn" method="post">
+            <table style="text-align:center;padding:0px;">
+                <tr><th colspan="2" style="border:2px solid;border-bottom:0px;">Unesite podatke za logovanje</th></tr>
+                <tr>
+                    <td class="login" style="border-left:2px solid;">
+                        <label>Korisnicko ime:</label>
+                    </td>
+                    <td class="login" style=" border-right:2px solid;">
+                        <input type="text" name="username" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-left:2px solid;"></td>
+                    <td style=" border-right:2px solid;">
+                        <label class="error">unesite ispravno ime</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="login" style="border-left:2px solid;">
+                        <label>Lozinka:</label>
+                    </td>
+                    <td class="login" style=" border-right:2px solid;">
+                        <input type="password" name="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-left:2px solid;"></td>
+                    <td style=" border-right:2px solid;">
+                        <label class="error">unesite ispravno ime</label>
+                    </td>
+                </tr>
+                <tr style="border-left:2px solid;">
+                    <td colspan="2" class="login" style="border-left:2px solid; border-right:2px solid;">
+                        <input type="submit" value="Uloguj se" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="login" style="font-size:14px;border:2px solid;border-top:none;">
+                        <a href="~/Autorizacija/Registruj">Registruj se!</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

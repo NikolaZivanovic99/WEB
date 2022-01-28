@@ -1,0 +1,66 @@
+﻿@using Galerija.Models;
+@model IEnumerable<Entity>
+@{
+    Layout = null;
+    uint uk = 0;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head><style>
+    body {
+        background-color: hsl(66, 35%, 86%);
+    }
+
+    th {
+        background-color: hsl(154, 100%, 26%);
+    }
+
+    td {
+        background-color: hsl(124, 23%, 88%);
+    }
+
+    select, input {
+        background-color: hsl(194, 24%, 93%);
+    }
+    table, th,td{
+        border:2px solid;
+        border-collapse:collapse;
+    }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Korpa</title>
+</head>
+<body>
+    <div>
+        <h2 style="text-align:center;">Korpa</h2>
+        <form action="~/Korpa/Kupi" method="post">
+            <table style="margin:auto">
+                <tr>
+                    <th>Slika</th>
+                    <th>Cena</th>
+                    <th style="border-top:hidden;border-right:hidden;background-color:hsl(66, 35%, 86%);"></th>
+                </tr>
+                @foreach (var slika in Model)
+                {
+                    <tr>
+                        <td>@slika.Value.Naziv</td>
+                        <td>@slika.Value.Cena</td>
+                        <td ><input type="hidden" name="id" value="@slika.Key"/><input type="submit" value="Ukloni iz korpe" formaction="~/Korpa/Ukloni"/></td>
+                        @{uk += slika.Value.Cena;}
+                    </tr>
+                }
+                <tr>
+                    <td >Ukupno:</td>
+                    <td>@uk</td>
+                    <td style="border-bottom:hidden; border-right:hidden;background-color:hsl(66, 35%, 86%);"></td>
+                </tr>
+                <tr><td colspan="2" align="center"><input type="hidden" name="uk" value="@uk"/><input type="submit" value="Kupi Slike"/></td><td style="border-bottom:hidden; border-right:hidden;background-color:hsl(66, 35%, 86%);"></td></tr>
+                <tr><td colspan="2" align="center"><input type="submit" value="Nastavi Kupovinu" formaction="~/Home/Index"/></td><td style="border-bottom:hidden; border-right:hidden;background-color:hsl(66, 35%, 86%);"></td></tr>
+            </table>
+            <p style="text-align:center; color:red;">@ViewBag.Error</p>
+        </form>
+    </div>
+</body>
+</html>

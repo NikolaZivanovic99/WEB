@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<ArrayOfKupovina xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Kupovina>
+    <Slike>
+      <Entity>
+        <Value>
+          <Naziv>The Continence of Scipio</Naziv>
+          <Autor>
+            <Ime>Giambattista</Ime>
+            <Prezime>Pittoni</Prezime>
+          </Autor>
+          <GodinaIzrade>1733</GodinaIzrade>
+          <Tehnika>ulje na platnu</Tehnika>
+          <Opis>The Continence of Scipio is an episode recounted by Livy of the Roman general Scipio Africanus </Opis>
+          <Cena>50000</Cena>
+          <NaProdaju>true</NaProdaju>
+          <Id>1</Id>
+        </Value>
+        <Key>1</Key>
+        <Obrisan>true</Obrisan>
+      </Entity>
+    </Slike>
+    <Kupac>
+      <Ime>Marko</Ime>
+      <Prezime>Djuric</Prezime>
+      <Username>korisnik1</Username>
+      <Password>korisnik1</Password>
+      <Pol>MUSKI</Pol>
+      <Email>markodj@gmail.com</Email>
+      <DatumRodjenja>1999-06-17T00:00:00</DatumRodjenja>
+      <Uloga>KUPAC</Uloga>
+      <Obrisan>false</Obrisan>
+    </Kupac>
+    <DatumKupovine>2021-05-21T14:22:46.787882+02:00</DatumKupovine>
+    <UkupnoCena>50000</UkupnoCena>
+  </Kupovina>
+  <Kupovina>
+    <Slike>
+      <Entity>
+        <Value>
+          <Naziv>The Continence of Scipio</Naziv>
+          <Autor>
+            <Ime>Giambattista</Ime>
+            <Prezime>Pittoni</Prezime>
+          </Autor>
+          <GodinaIzrade>1733</GodinaIzrade>
+          <Tehnika>ulje na platnu</Tehnika>
+          <Opis>The Continence of Scipio is an episode recounted by Livy of the Roman general Scipio Africanus </Opis>
+          <Cena>50000</Cena>
+          <NaProdaju>true</NaProdaju>
+          <Id>1</Id>
+        </Value>
+        <Key>1</Key>
+        <Obrisan>true</Obrisan>
+      </Entity>
+    </Slike>
+    <Kupac>
+      <Ime>Marko</Ime>
+      <Prezime>Djuric</Prezime>
+      <Username>korisnik1</Username>
+      <Password>korisnik1</Password>
+      <Pol>MUSKI</Pol>
+      <Email>markodj@gmail.com</Email>
+      <DatumRodjenja>1999-06-17T00:00:00</DatumRodjenja>
+      <Uloga>KUPAC</Uloga>
+      <Obrisan>false</Obrisan>
+    </Kupac>
+    <DatumKupovine>2021-05-21T14:27:28.0469976+02:00</DatumKupovine>
+    <UkupnoCena>50000</UkupnoCena>
+  </Kupovina>
+</ArrayOfKupovina>

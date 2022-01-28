@@ -1,0 +1,81 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body {
+            background-color: hsl(66, 35%, 86%);
+        }
+
+        th {
+            background-color: hsl(154, 100%, 26%);
+        }
+
+        td {
+            background-color: hsl(124, 23%, 88%);
+        }
+
+        select, input {
+            background-color: hsl(194, 24%, 93%);
+        }
+        ::placeholder{
+            color: red;
+            opacity: 1;
+        }
+        table{
+            border-collapse:collapse;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registracija</title>
+</head>
+<body>
+    <div >
+        <form action="~/Autorizacija/Registruj" method="post">
+            <table style="margin: 100px auto;border:2px solid;">
+                <tr><th colspan="2" style="border-bottom:2px solid;">Registruj Se!</th></tr>
+                <tr>
+                    <td><label>Korisnicko ime: </label></td>
+                    <td><input type="text" name="username" placeholder="@ViewBag.Username"/></td>
+                </tr>
+                <tr>
+                    <td><label>Lozinka: </label></td>
+                    <td><input type="password" name="password" placeholder="@ViewBag.Pass"/></td>
+                </tr>
+                <tr>
+                    <td><label>Ime: </label></td>
+                    <td><input type="text" name="ime" /></td>
+                </tr>
+                <tr>
+                    <td><label>Prezime: </label></td>
+                    <td><input type="text" name="prezime" /></td>
+                </tr>
+                <tr>
+                    <td><label>Pol: </label></td>
+                    <td>
+                        <select name="pol">
+                            <option value="MUSKI">muski</option>
+                            <option vlaue="ZENSKI">zenski</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Email: </label></td>
+                    <td><input type="email" name="email" /></td>
+                </tr>
+                <tr>
+                    <td><label>Datum Rodjenja: </label></td>
+                    <td><input type="date" name="DatumRodjenja" /></td>
+                </tr>
+                <tr><td colspan="2" align="center"><input type="submit" value="Registruj Se!" /></td></tr>
+                <tr><td colspan="2" align="center"><input type="submit" value="Vrati se na pocetak" formaction="~/Home/Index"/></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

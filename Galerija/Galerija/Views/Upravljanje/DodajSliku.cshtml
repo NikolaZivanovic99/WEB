@@ -1,0 +1,82 @@
+﻿@using Galerija.Models;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        ::placeholder {
+            color: red;
+            opacity: 1;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Upravljanje</title>
+</head>
+<body>
+    <div>
+        <h2 style="text-align:center">Dodaj novu sliku</h2>
+        <form action="~/Upravljanje/DodajSliku" method="post">
+            <table style="margin:auto;">
+                <tr>
+                    <td><label>Naziv: </label></td>
+                    <td><input type="text" name="naziv" placeholder="@ViewBag.Naziv"/></td>
+                </tr>
+                <tr>
+                    <td><label>Ime Autora: </label></td>
+                    <td><input type="text" name="autor.ime" /></td>
+                </tr>
+                <tr>
+                    <td><label>Prezime Autora: </label></td>
+                    <td><input type="text" name="autor.prezime"  /></td>
+                </tr>
+                <tr>
+                    <td><label>Godina izrade: </label></td>
+                    <td><input type="text" name="godinaIzrade"  /></td>
+                </tr>
+                <tr>
+                    <td><label>Tehnika: </label></td>
+                    <td><input type="text" name="tehnika"  /></td>
+                </tr>
+                <tr>
+                    <td><label>Opis: </label></td>
+                    <td><input type="text" name="opis"/></td>
+                </tr>
+                <tr>
+                    <td><label>Cena: </label></td>
+                    <td><input type="number" name="cena"  placeholder="@ViewBag.Cena"/></td>
+                </tr>
+                <tr>
+                    <td><label>Na prodaju: </label></td>
+                    <td>
+                        <select name="naProdaju">
+                            <option value="true">Da</option>
+                            <option value="false">Ne</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Galerija: </label></td>
+                    <td>
+                        <select name="galerija">
+                            @foreach (var gal in (List<Galerija>)HttpContext.Current.Application["galerije"])
+                            {
+                                if (!gal.Obrisan)
+                                {
+                                    <option value="@gal.Naziv">@gal.Naziv</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center"><input type="submit" value="Napravi novu sliku" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center"><input type="submit" value="Vrati se nazad" formaction="~/Home/Index" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

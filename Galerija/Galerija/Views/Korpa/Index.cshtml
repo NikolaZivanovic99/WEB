@@ -1,0 +1,67 @@
+﻿@using Galerija.Models;
+@model IEnumerable<Kupovina>
+@{
+    Layout = null;
+    int i = 1;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body {
+            background-color: hsl(66, 35%, 86%);
+        }
+
+        th {
+            background-color: hsl(154, 100%, 26%);
+        }
+        .naslov{
+            background-color: hsl(136, 91%, 83%);
+        }
+        td {
+            background-color: hsl(124, 23%, 88%);
+        }
+
+        select, input {
+            background-color: hsl(194, 24%, 93%);
+        }
+        table, th, td{
+            border:2px solid;
+            border-collapse:collapse;
+            text-align:center;
+            width:auto;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Istorja kupovine</title>
+</head>
+<body>
+    <div>
+        <table style="margin:auto; border:2px solid; empty-cells:show">
+            <tr><th colspan="3" align="center">Istorija kupovine</th></tr>
+            @foreach (var kupovina in Model)
+            {
+                <tr><th colspan="3" class="naslov">Kupovina@(i)</th></tr>
+                <tr>
+                    <th>Slika</th>
+                    <th>Datum</th>
+                    <th>Cena Slike</th>
+                </tr>
+                foreach (var slika in kupovina.Slike)
+                {
+                    <tr>
+                        <td>@slika.Value.Naziv</td>
+                        <td>@kupovina.DatumKupovine</td>
+                        <td>@slika.Value.Cena</td>
+                    </tr>
+                    i++;
+                }
+                <tr><td colspan="3" align="center">Ukupno: @(kupovina.UkupnoCena)</td></tr>
+            }
+            <tr><td colspan="3" align="center"><form action="~/Home/Index"><input type="submit" value="Vrati se na Home" /></form></td></tr>
+        </table>
+    </div>
+</body>
+</html>

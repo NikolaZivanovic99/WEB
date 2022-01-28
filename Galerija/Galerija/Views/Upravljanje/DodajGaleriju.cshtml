@@ -1,0 +1,64 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        table{
+            margin:auto;
+            border:2px solid;
+        }
+        td, th{
+            padding:5px;
+        }
+        p{
+            text-align:center;
+            color:red;
+        }
+        ::placeholder{
+            color:red;
+            opacity:1;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dodaj Galeriju</title>
+</head>
+<body>
+    <div>
+        <form action="~/Upravljanje/DodajGaleriju" method="post">
+            <table>
+                <tr>
+                    <th colspan="2">Napravi novu galeriju!</th>
+                </tr>
+                <tr>
+                    <td><label>Naziv: </label></td>
+                    <td><input type="text" name="naziv" placeholder="@ViewBag.Naziv"/></td>
+                </tr>
+                <tr>
+                    <td><label>Ulica: </label></td>
+                    <td><input type="text" name="ulica" placeholder="@ViewBag.Ulica"/></td>
+                </tr>
+                <tr>
+                    <td><label>Broj: </label></td>
+                    <td><input type="text" name="broj"  placeholder="@ViewBag.Broj"/></td>
+                </tr>
+                <tr>
+                    <td><label>Grad: </label></td>
+                    <td><input type="text" name="grad" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" value="Dodaj Galeriju" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" value="Vrati se na pocetak" formaction="~/Home/Index"/></td>
+                </tr>
+            </table>
+        </form>
+        <p>@ViewBag.Error</p>
+    </div>
+</body>
+</html>

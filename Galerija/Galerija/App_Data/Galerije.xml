@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<ArrayOfGalerija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Galerija>
+    <Slike>
+      <Entity>
+        <Value>
+          <Naziv>Mona Lisa</Naziv>
+          <Autor>
+            <Ime>Leonardo</Ime>
+            <Prezime>da Vinci</Prezime>
+          </Autor>
+          <GodinaIzrade>1503-1506</GodinaIzrade>
+          <Tehnika>ulje na platnu</Tehnika>
+          <Opis>Najpoznatija slika Leonarda Da Vincija Oslikava jednu gospoju kako se osmehuje</Opis>
+          <Cena>1000000</Cena>
+          <NaProdaju>false</NaProdaju>
+          <Id>0</Id>
+        </Value>
+        <Key>0</Key>
+        <Obrisan>false</Obrisan>
+      </Entity>
+      <Entity>
+        <Value>
+          <Naziv>The Continence of Scipio</Naziv>
+          <Autor>
+            <Ime>Giambattista</Ime>
+            <Prezime>Pittoni</Prezime>
+          </Autor>
+          <GodinaIzrade>1733</GodinaIzrade>
+          <Tehnika>ulje na platnu</Tehnika>
+          <Opis>The Continence of Scipio is an episode recounted by Livy of the Roman general Scipio Africanus </Opis>
+          <Cena>50000</Cena>
+          <NaProdaju>true</NaProdaju>
+          <Id>1</Id>
+        </Value>
+        <Key>1</Key>
+        <Obrisan>true</Obrisan>
+      </Entity>
+      <Entity>
+        <Value>
+          <Naziv>123</Naziv>
+          <Autor>
+            <Ime>adf</Ime>
+            <Prezime>adf</Prezime>
+          </Autor>
+          <GodinaIzrade>213</GodinaIzrade>
+          <Tehnika>asdf</Tehnika>
+          <Opis>asdf</Opis>
+          <Cena>0</Cena>
+          <NaProdaju>true</NaProdaju>
+          <Id>2</Id>
+        </Value>
+        <Key>2</Key>
+        <Obrisan>true</Obrisan>
+      </Entity>
+    </Slike>
+    <Naziv>Louvres</Naziv>
+    <Adresa>Musée du Louvre, 75001</Adresa>
+    <Obrisan>false</Obrisan>
+  </Galerija>
+  <Galerija>
+    <Slike>
+      <Entity>
+        <Value>
+          <Naziv>Dryad</Naziv>
+          <Autor>
+            <Ime>Pablo</Ime>
+            <Prezime>Picasso</Prezime>
+          </Autor>
+          <GodinaIzrade>1908</GodinaIzrade>
+          <Tehnika>ulje na platnu</Tehnika>
+          <Opis>Smatra se za najvazniji rad ranog Kubizma</Opis>
+          <Cena>80000</Cena>
+          <NaProdaju>true</NaProdaju>
+          <Id>3</Id>
+        </Value>
+        <Key>3</Key>
+        <Obrisan>false</Obrisan>
+      </Entity>
+      <Entity>
+        <Value>
+          <Naziv>Danae</Naziv>
+          <Autor>
+            <Ime>Rembrandt</Ime>
+            <Prezime />
+          </Autor>
+          <GodinaIzrade>1636</GodinaIzrade>
+          <Tehnika>ulje na platnu</Tehnika>
+          <Opis>Prikazuje u prirodnoj velicini karakter Danaja iz grcke mitologije</Opis>
+          <Cena>80000</Cena>
+          <NaProdaju>true</NaProdaju>
+          <Id>4</Id>
+        </Value>
+        <Key>4</Key>
+        <Obrisan>false</Obrisan>
+      </Entity>
+    </Slike>
+    <Naziv>The State Hermitage Museum</Naziv>
+    <Adresa>34 Palace Embankment</Adresa>
+    <Obrisan>false</Obrisan>
+  </Galerija>
+  <Galerija>
+    <Slike />
+    <Naziv>Galerija</Naziv>
+    <Adresa>Ulicas, 12, Grad</Adresa>
+    <Obrisan>false</Obrisan>
+  </Galerija>
+</ArrayOfGalerija>

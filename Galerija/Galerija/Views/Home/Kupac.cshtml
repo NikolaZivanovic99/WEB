@@ -1,0 +1,231 @@
+﻿@using Galerija.Models;
+@model IEnumerable<Entity>
+@{
+
+    ViewBag.Title = "Index";
+    var korpa = (List<Entity>)HttpContext.Current.Application["korpa"];
+    int k;
+    if(korpa != null)
+    {
+        k = korpa.Count;
+    }
+    else
+    {
+        k = 0;
+    }
+}
+
+<head>
+    <style>
+        body {
+            background-color: hsl(66, 35%, 86%);
+        }
+
+        th {
+            background-color: hsl(154, 100%, 26%);
+        }
+
+        td {
+            background-color: hsl(124, 23%, 88%);
+        }
+
+        select, input {
+            background-color: hsl(194, 24%, 93%);
+        }
+        table, th, td {
+            border: 2px solid;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+            table.levo {
+                border: 2px solid;
+                width: 200px;
+                text-align: center
+            }
+
+        input.cena {
+            width: 60px;
+        }
+
+        form td {
+            border-top: hidden;
+            border-bottom: hidden;
+        }
+
+        div {
+            float: left
+        }
+
+        td.login {
+            border: hidden;
+        }
+        .link-button {
+            background: none;
+            border: none;
+            color: #1a0dab;
+            text-decoration: underline;
+            cursor: pointer;
+            padding:0px;
+        }
+    </style>
+    <title>Home</title>
+</head>
+
+<div style="width:200px; margin-top:68px;">
+    <form action="~/Home/Sortiraj" method="post">
+        <table class="levo">
+            <tr><th>Sortiraj</th></tr>
+            <tr>
+                <td>
+                    <select name="nacin">
+                        <option value="naziv">Po nazivu</option>
+                        <option value="tehnika">Po tehnici</option>
+                        <option value="cena">Po ceni</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="smer">
+                        <option value="rastuce">Rastuce</option>
+                        <option value="opadajuce">Opadajuce</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Primeni filter" />
+                </td>
+            </tr>
+            <tr>
+                <td style="border-bottom:2px solid;">
+                    <input type="submit" formaction="~/Home/Ocisti" value="Ocisti Filter" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form action="~/Home/Pretraga" method="post">
+        <table class="levo">
+            <tr><th>Pretrazi</th></tr>
+            <tr>
+                <td>
+                    <label>Cena: </label><input type="text" name="od" class="cena" /><label> - </label><input type="text" name="do" class="cena" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Naziv: </label><input type="text" name="naziv" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Tehnika: </label><input type="text" name="tehnika" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Primeni pretragu" />
+                </td>
+            </tr>
+            <tr>
+                <td style="border-bottom:2px solid;">
+                    <input type="submit" formaction="~/Home/Ocisti" value="Ocisti Pretragu" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <table class="levo">
+        <tr><th style="border:none;">Galerije</th></tr>
+        @foreach (var gal in HttpContext.Current.Application["galerije"] as List<Galerija>)
+        {
+            if (!gal.Obrisan)
+            {
+                <tr><td style="border:none"><form action="~/Home/PoGal" method="post"><input type="hidden" value="@gal.Naziv" name="naziv" /><input type="submit" class="link-button" value="@gal.Naziv" /></form></td></tr>
+            }
+        }
+        <tr><td style="border-bottom:2px solid; border-top:none;"><form action="~/Home/Index"><input type="submit" class="link-button" value="Sve Galerije" /></form></td></tr>
+    </table>
+
+</div>
+<div style="width:auto; margin-left:10px; margin-right:50px">
+    <h2 style="text-align:center">Galerija</h2>
+    <table>
+        <tr>
+            <th>Naziv slike</th>
+            <th>Autor</th>
+            <th>Godina izrade</th>
+            <th>Tehnika izrade</th>
+            <th>Opis</th>
+            <th>Cena</th>
+            @if (ViewBag.Flag == "flag")
+            {
+                <th>Na Prodaju</th>
+            }
+            else
+            {
+                <td style="border-top:hidden;border-right:hidden;background-color: hsl(66, 35%, 86%);"></td>
+            }
+        </tr>
+
+        @foreach (Entity slika in Model)
+        {
+            if (!slika.Obrisan)
+            {
+                if (ViewBag.Flag != "flag")
+                {
+                    if (slika.Value.NaProdaju)
+                    {
+                        <tr>
+                            <td>@slika.Value.Naziv</td>
+                            <td>@slika.Value.Autor</td>
+                            <td>@slika.Value.GodinaIzrade</td>
+                            <td>@slika.Value.Tehnika</td>
+                            <td>@slika.Value.Opis</td>
+                            <td>@slika.Value.Cena</td>
+                            <td><form action="~/Korpa/Dodaj" method="post"><input type="hidden" name="id" value="@slika.Key" /><input type="submit" value="Dodaj u korpu" /></form></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td>@slika.Value.Naziv</td>
+                        <td>@slika.Value.Autor</td>
+                        <td>@slika.Value.GodinaIzrade</td>
+                        <td>@slika.Value.Tehnika</td>
+                        <td>@slika.Value.Opis</td>
+                        <td>@slika.Value.Cena</td>
+                        @{
+                            string prodaja = slika.Value.NaProdaju ? "Da" : "Ne";
+                        }
+                        <td>@prodaja</td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+    <p style="text-align:center;color:red;">@TempData["error"]</p>
+</div>
+    <div style="border:2px solid;margin-top:68px; background-color: hsl(124, 23%, 88%);">
+        <form action="~/Autorizacija/LogOut" method="post">
+            <table style="text-align:center; border:none;">
+                <tr>
+                    <td style="border:none;background-color: hsl(154, 100%, 26%);"><label>Pozdrav @(((Korisnik)(Session["user"])).Ime)</label></td>
+                </tr>
+                <tr>
+                    <td style="border:none;"><label>Elemenata u korpi: @k</label></td style="border:none;">
+                </tr>
+                <tr><td style="border:none;"><input type="submit" value="Pregledaj korpu!" formaction="~/Korpa/Korpa"/></td></tr>
+                <tr>
+                    <td style="border:none;"><input type="submit" value="Istorija kupovine" formaction="~/Korpa/Index"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="login" style="border:none;">
+                        <input type="submit" value="Izloguj se" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
